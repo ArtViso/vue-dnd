@@ -1,31 +1,22 @@
 <template>
-  <div
-      :id="id"
-      class="board"
-      @dragover.prevent
-      @drop.prevent="drop"
-  >
-    <slot/>
+  <div class="bg-white p-3 m-5 column-width rounded drop-shadow-xl border-t-4">
+    <p class="text-gray-700 font-semibold font-sans tracking-wide text-lg uppercase">{{ title }}: ({{ taskLength }})</p>
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Board",
-  props: [
-    'id'
-  ],
-  methods: {
-    drop(e) {
-      const card_id = e.dataTransfer.getData('card_id')
-      const card = document.getElementById(card_id);
-      card.style.display = 'block';
-      e.target.appendChild(card);
-    }
-  }
+  name: "Board.vue",
+  props: {
+    title: {
+      type: String,
+      default: 'test'
+    },
+    taskLength: {
+      type: Number,
+      default: 0
+    },
+  },
 }
 </script>
-
-<style scoped>
-
-</style>
